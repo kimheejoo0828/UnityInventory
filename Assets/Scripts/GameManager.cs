@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Character player;
+    public Character Player => player;
+
+    private void Start()
     {
-        
+        SetData();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetData()
     {
-        
+        player = new Character("Chad", 10, 2000, 10, 10, 10, 10);
+
+        UIManager.Instance.MainMenu.InitUI(player);
+        UIManager.Instance.Status.InitUI(player);
+        UIManager.Instance.Inventory.InitUI(player);
+        UIManager.Instance.ShowMainMenu();
     }
 }
