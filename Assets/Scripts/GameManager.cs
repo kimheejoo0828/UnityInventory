@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         var sword = new Item("철검", "기본적인 검입니다.", swordIcon, ItemType.Weapon, attack: 5);
         var shield = new Item("기본방패", "기본 방어구입니다.", shieldIcon, ItemType.Armor, defense: 3);
         var axe = new Item("도끼", "기본적인 도끼입니다.", axeIcon, ItemType.Weapon, attack: 7);
-        var ironshield = new Item("철방패", "철로 만든 방패입니다.", ironshieldIcon, ItemType.Armor, defense: 8);
+        var ironshield = new Item("철방패", "철로 만든 방패입니다.", ironshieldIcon, ItemType.Armor, defense: 8, hp: 5);
 
         var inventory = new List<Item> { sword, shield, axe, ironshield };
 
