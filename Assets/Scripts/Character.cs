@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class Character : MonoBehaviour
+public class Character
 {
     public string Name { get; private set; }
     public int Level { get; private set; }
@@ -15,7 +14,10 @@ public class Character : MonoBehaviour
 
     public List<Item> Inventory { get; private set; }
 
-    public Character(string name, int level, int attack, int defense, int maxHP, int critical, int gold = 0, List<Item> inventory = null)
+    private Item equippedItem = null;
+    public Item EquippedItem => equippedItem;
+
+    public Character(string name, int level, int attack, int defense, int maxHP, int critical, int gold, List<Item> inventory)
     {
         Name = name;
         Level = level;
@@ -34,6 +36,17 @@ public class Character : MonoBehaviour
 
     public void EquipItem(Item item)
     {
+        if (!Inventory.Contains(item))
+            return;
+
+        if (equippedItem != null)
+        {
+            UnEquipItem(equippedItem);
+        }
+
+        // 새 아이템 장착
+        equippedItem = item;
+
         Attack += item.Attack;
         Defense += item.Defense;
         MaxHP += item.HP;
@@ -46,5 +59,10 @@ public class Character : MonoBehaviour
         Defense -= item.Defense;
         MaxHP -= item.HP;
         Critical -= item.Critical;
+    }
+
+    public bool IsEquipped(Item item)
+    {
+        return equippedItem != null && item != null && equippedItem == item;
     }
 }

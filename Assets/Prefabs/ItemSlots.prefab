@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconImage: {fileID: 1438427354604748031}
   nameText: {fileID: 1372408571869772805}
+  equipMarkObject: {fileID: 6492468266933293498}
 --- !u!114 &7362091163535412133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,12 +198,12 @@ GameObject:
   - component: {fileID: 6838895978253899551}
   - component: {fileID: 8281504595327817004}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: EquipMarkObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5245449465448919129
 RectTransform:
   m_ObjectHideFlags: 0

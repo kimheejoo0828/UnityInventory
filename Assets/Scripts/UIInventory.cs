@@ -24,19 +24,18 @@ public class UIInventory : MonoBehaviour
 
     public void RefreshInventory(List<Item> inventory)
     {
-        // 기존 슬롯 제거
         foreach (var slot in slotList)
         {
             Destroy(slot.gameObject);
         }
         slotList.Clear();
 
-        // 새로 생성
         foreach (var item in inventory)
         {
             GameObject go = Instantiate(slotPrefab, slotParent);
             UISlot slot = go.GetComponent<UISlot>();
-            slot.SetItem(item);
+            bool isEquipped = GameManager.Instance.Player.IsEquipped(item);
+            slot.SetItem(item, isEquipped); // 장착 여부 전달
             slot.SetClickCallback(OnItemSelected);
             slotList.Add(slot);
         }
@@ -52,6 +51,7 @@ public class UIInventory : MonoBehaviour
         if (selectedItem != null)
         {
             GameManager.Instance.Player.EquipItem(selectedItem);
+            RefreshInventory(GameManager.Instance.Player.Inventory);
             UIManager.Instance.Status.InitUI(GameManager.Instance.Player); // 업데이트된 스탯 표시
         }
     }
