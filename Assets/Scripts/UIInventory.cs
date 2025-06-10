@@ -9,6 +9,7 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private Transform slotParent;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private Button equipButton;
+    [SerializeField] private Button unequipButton;
 
     private List<UISlot> slotList = new List<UISlot>();
     private Item selectedItem;
@@ -20,6 +21,7 @@ public class UIInventory : MonoBehaviour
 
         equipButton.onClick.RemoveAllListeners();
         equipButton.onClick.AddListener(OnClickEquip);
+        unequipButton.onClick.AddListener(OnClickUnequip);
     }
 
     public void RefreshInventory(List<Item> inventory)
@@ -60,5 +62,16 @@ public class UIInventory : MonoBehaviour
     public void OnClickBack()
     {
         UIManager.Instance.ShowMainMenu();
+    }
+
+    private void OnClickUnequip()
+    {
+        if (selectedItem == null) return;
+
+        GameManager.Instance.Player.UnEquipItem(selectedItem);
+
+        // UI °»½Å
+        RefreshInventory(GameManager.Instance.Player.Inventory);
+        UIManager.Instance.Status.InitUI(GameManager.Instance.Player);
     }
 }
