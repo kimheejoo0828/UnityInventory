@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemType
+{
+    Weapon,
+    Armor
+}
+
 public class Item
 {
     public string Name { get; private set; }
@@ -13,7 +19,9 @@ public class Item
     public int HP { get; private set; }
     public int Critical { get; private set; }
 
-    public Item(string name, string description, Sprite icon, int attack = 0, int defense = 0, int hp = 0, int critical = 0)
+    public ItemType Type { get; private set; }
+
+    public Item(string name, string description, Sprite icon, ItemType type, int attack = 0, int defense = 0, int hp = 0, int critical = 0)
     {
         Name = name;
         Description = description;
@@ -22,5 +30,6 @@ public class Item
         Defense = defense;
         HP = hp;
         Critical = critical;
+        Type = type;
     }
 }

@@ -14,6 +14,12 @@ public class Character
 
     public List<Item> Inventory { get; private set; }
 
+    private Item equippedWeapon;
+    private Item equippedArmor;
+
+    public Item EquippedWeapon => equippedWeapon;
+    public Item EquippedArmor => equippedArmor;
+
     private Item equippedItem = null;
     public Item EquippedItem => equippedItem;
 
@@ -39,13 +45,20 @@ public class Character
         if (!Inventory.Contains(item))
             return;
 
-        if (equippedItem != null)
+        switch (item.Type)
         {
-            UnEquipItem(equippedItem);
-        }
+            case ItemType.Weapon:
+                if (equippedWeapon != null)
+                    UnEquipItem(equippedWeapon);
+                equippedWeapon = item;
+                break;
 
-        // 새 아이템 장착
-        equippedItem = item;
+            case ItemType.Armor:
+                if (equippedArmor != null)
+                    UnEquipItem(equippedArmor);
+                equippedArmor = item;
+                break;
+        }
 
         Attack += item.Attack;
         Defense += item.Defense;
@@ -55,14 +68,21 @@ public class Character
 
     public void UnEquipItem(Item item)
     {
+        if (item == null) return;
+
         Attack -= item.Attack;
         Defense -= item.Defense;
         MaxHP -= item.HP;
         Critical -= item.Critical;
+
+        if (equippedWeapon == item)
+            equippedWeapon = null;
+        else if (equippedArmor == item)
+            equippedArmor = null;
     }
 
     public bool IsEquipped(Item item)
     {
-        return equippedItem != null && item != null && equippedItem == item;
+        return item == equippedWeapon || item == equippedArmor;
     }
 }
