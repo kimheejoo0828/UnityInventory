@@ -6,22 +6,24 @@ using UnityEngine.UI;
 
 public class UIStatus : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI txtAttack;
-    [SerializeField] private TextMeshProUGUI txtDefense;
-    [SerializeField] private TextMeshProUGUI txtCritical;
-    [SerializeField] private TextMeshProUGUI txtHp;
-    [SerializeField] private Button btnBack;
+    [SerializeField] private TextMeshProUGUI attackText;
+    [SerializeField] private TextMeshProUGUI defenseText;
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI critText;
 
     public void InitUI(Character character)
     {
-        txtAttack.text = character.Attack.ToString();
-        txtDefense.text = character.Defense.ToString();
-        txtCritical.text = character.Critical.ToString();
-        txtHp.text = character.Hp.ToString();
+        attackText.text = $"{character.Attack}";
+        defenseText.text = $"{character.Defense}";
+        hpText.text = $" {character.MaxHP}";
+        critText.text = $"{character.Critical}";
     }
 
-    private void Start()
+    public void OnClickBack()
     {
-        btnBack.onClick.AddListener(() => UIManager.Instance.ShowMainMenu());
+        UIManager.Instance.ShowMainMenu();
     }
+
+    public void ShowUI() => gameObject.SetActive(true);
+    public void HideUI() => gameObject.SetActive(false);
 }
