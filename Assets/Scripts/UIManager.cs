@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIMainMenu uiMainMenu;
     [SerializeField] private UIStatus uiStatus;
     [SerializeField] private UIInventory uiInventory;
+    [SerializeField] private UIItemInfo uiItemInfo;
 
     public UIMainMenu MainMenu => uiMainMenu;
     public UIStatus Status => uiStatus;
@@ -41,5 +42,10 @@ public class UIManager : MonoBehaviour
         uiMainMenu.gameObject.SetActive(false);
         uiStatus.gameObject.SetActive(false);
         uiInventory.gameObject.SetActive(true);
+    }
+
+    public void ShowItemInfo(Item item)
+    {
+        uiItemInfo.SetInfo(item); // ← 별도 패널 켜기
     }
 }

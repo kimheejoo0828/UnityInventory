@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         Sprite axeIcon = Resources.Load<Sprite>("Icons/axe");
 
         var sword = new Item("철검", "기본적인 검입니다.", swordIcon, attack: 5);
-        var armor = new Item("가죽 방어구", "얇은 방어구입니다.", armorIcon, defense: 3, hp: 10);
+        var armor = new Item("기본방패", "기본 방어구입니다.", armorIcon, defense: 3);
         var axe = new Item("도끼", "기본적인 도끼입니다.", axeIcon, attack: 7);
 
         var inventory = new List<Item> { sword, armor, axe };

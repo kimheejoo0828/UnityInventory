@@ -44,6 +44,7 @@ public class UIInventory : MonoBehaviour
     private void OnItemSelected(Item item)
     {
         selectedItem = item;
+        UIManager.Instance.ShowItemInfo(item);
     }
 
     private void OnClickEquip()
