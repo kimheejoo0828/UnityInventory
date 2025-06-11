@@ -1,5 +1,6 @@
 # UnityInventory
 스파르타 유니티 심화 개인과제 인벤토리 만들기
+
 경험치는 던전이 없어서 경험치를 안넣었습니다
 
 ![화면 캡처 2025-06-11 102106](https://github.com/user-attachments/assets/3d6c9847-7cb5-46a8-90d5-a4164ebe260e)
