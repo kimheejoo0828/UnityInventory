@@ -19,7 +19,7 @@ public class UIInventory : MonoBehaviour
         RefreshInventory(character.Inventory);
         selectedItem = null;
 
-        equipButton.onClick.RemoveAllListeners();
+        equipButton.onClick.RemoveAllListeners(); 
         equipButton.onClick.AddListener(OnClickEquip);
         unequipButton.onClick.AddListener(OnClickUnequip);
     }
@@ -36,8 +36,8 @@ public class UIInventory : MonoBehaviour
         {
             GameObject go = Instantiate(slotPrefab, slotParent);
             UISlot slot = go.GetComponent<UISlot>();
-            bool isEquipped = GameManager.Instance.Player.IsEquipped(item);
-            slot.SetItem(item, isEquipped); // 장착 여부 전달
+            bool isEquipped = GameManager.Instance.Player.IsEquipped(item); //장착 여부 판단
+            slot.SetItem(item, isEquipped); //아이템 정보와 장착 여부 설정
             slot.SetClickCallback(OnItemSelected);
             slotList.Add(slot);
         }
@@ -54,7 +54,7 @@ public class UIInventory : MonoBehaviour
         if (selectedItem != null)
         {
             GameManager.Instance.Player.EquipItem(selectedItem);
-            RefreshInventory(GameManager.Instance.Player.Inventory);
+            RefreshInventory(GameManager.Instance.Player.Inventory); //인벤토리 다시 그림
             UIManager.Instance.Status.InitUI(GameManager.Instance.Player); // 업데이트된 스탯 표시
         }
     }

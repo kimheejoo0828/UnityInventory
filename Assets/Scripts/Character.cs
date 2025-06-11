@@ -42,15 +42,15 @@ public class Character
 
     public void EquipItem(Item item)
     {
-        if (!Inventory.Contains(item))
+        if (!Inventory.Contains(item)) //인벤토리에 아이템이 없다면 장착취소
             return;
 
         switch (item.Type)
         {
-            case ItemType.Weapon:
-                if (equippedWeapon != null)
+            case ItemType.Weapon:  //아이템이 무기일 경우
+                if (equippedWeapon != null) //기존 무기가 있다면 먼저해제
                     UnEquipItem(equippedWeapon);
-                equippedWeapon = item;
+                equippedWeapon = item; //새로운 아이템을 무기로 장착
                 break;
 
             case ItemType.Armor:
@@ -83,6 +83,6 @@ public class Character
 
     public bool IsEquipped(Item item)
     {
-        return item == equippedWeapon || item == equippedArmor;
+        return item == equippedWeapon || item == equippedArmor; //아이템이 현재 무기 또는 방어구 슬롯에 장착된 상태인지 여부를 반환
     }
 }
